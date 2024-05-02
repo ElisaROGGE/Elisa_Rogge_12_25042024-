@@ -1,0 +1,25 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 10px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.title{
+    color: red;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.list{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+.list li a{
+    color: white;
+    text-decoration: none;
+}
