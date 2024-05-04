@@ -11,3 +11,8 @@ body{
   font-family: "Roboto";
   overflow-x: hidden;
 }
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
