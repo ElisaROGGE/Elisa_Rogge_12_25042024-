@@ -35,14 +35,11 @@ const Chart: React.FC<ChartProps> = ({ dataChart }) => {
     return null;
   };
 
-  const minKilogram = Math.min(...updatedDataChart.map(data => data.kilogram));
-  const maxKilogram = Math.max(...updatedDataChart.map(data => data.kilogram));
-
   return (
     <div>
         <BarChart
             width={800}
-            height={400}
+            height={300}
             data={updatedDataChart}
             margin={{
               top: 5,
@@ -51,13 +48,13 @@ const Chart: React.FC<ChartProps> = ({ dataChart }) => {
               bottom: 5,
             }}
         >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="dayOfMonth" />
-            <YAxis domain={[69, 'auto']} orientation="right" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={true} />
+            <XAxis dataKey="dayOfMonth" axisLine={false} tickLine={false} />
+            <YAxis domain={[69, 'auto']} axisLine={false} tickLine={false} orientation="right" />
             <Legend verticalAlign="top" align="right" />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="kilogram" name="Poids (kg)" fill="#E60000" radius={[20, 20, 0, 0]} activeBar={<Rectangle />} />
-            <Bar dataKey="calories" name="Calories brûlées (kCal)" fill="#282D30" radius={[20, 20, 0, 0]} activeBar={<Rectangle />} />
+            <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" radius={[20, 20, 0, 0]} barSize={10} activeBar={<Rectangle />} />
+            <Bar dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" radius={[20, 20, 0, 0]} barSize={10} activeBar={<Rectangle />} />
         </BarChart>
     </div>
   );
