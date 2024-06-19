@@ -9,6 +9,7 @@ import ChickenIcon from "../../assets/img/chicken.svg";
 import AppleIcon from "../../assets/img/apple.svg";
 import CheeseburgerIcon from "../../assets/img/cheeseburger.svg";
 import StatChart from "../Chart/StatChart.tsx";
+import AverageChart from "../Chart/AverageChart.tsx";
 
 
 interface UserActivityProps {}
@@ -26,6 +27,9 @@ const UserActivity: React.FC<UserActivityProps> = () => {
     (user) => user.id === parseInt(id ?? "")
   );
   const performance = data.USER_PERFORMANCE.find(
+    (user) => user.userId === parseInt(id ?? "")
+  );
+  const average = data.USER_AVERAGE_SESSIONS.find(
     (user) => user.userId === parseInt(id ?? "")
   );
   const userName = user ? user.userInfos.firstName : "Utilisateur non trouvé";
@@ -51,8 +55,13 @@ const UserActivity: React.FC<UserActivityProps> = () => {
           <span className="font-bold absolute">Activité quotidienne</span>
           <Chart dataChart={newData} />
         </div>
-        <div className="w-1/3 h-32">
-          <StatChart dataChart={performance} lang="fr" />
+        <div className="flex">
+          <div className="w-1/3 h-32">
+            <AverageChart dataChart={average} lang="fr" />
+          </div>
+          <div className="w-1/3 h-32">
+            <StatChart dataChart={performance} lang="fr" />
+          </div>
         </div>
       </div>
       <div className="w-1/4 flex flex-col gap-32 h-full">
