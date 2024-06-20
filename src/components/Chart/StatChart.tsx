@@ -3,9 +3,17 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'r
 import './index.css'
 
 const StatChart = ({ dataChart }) => {
+  const translations = {
+    cardio: "Cardio",
+    energy: "Énergie",
+    endurance: "Endurance",
+    strength: "Force",
+    speed: "Vitesse",
+    intensity: "Intensité"
+  };
  
   const performanceData = dataChart.data.map((perf) => ({
-    kind: dataChart.kind[perf.kind],
+    kind: translations[dataChart.kind[perf.kind]] || dataChart.kind[perf.kind],
     value: perf.value,
   }));
 

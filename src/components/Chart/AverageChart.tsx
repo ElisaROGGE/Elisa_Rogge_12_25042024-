@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { AreaChart, CartesianGrid, XAxis, YAxis, Area, Tooltip } from 'recharts';
 import './index.css'
 
 const AverageChart = ({ dataChart }) => {
 
-    console.log(dataChart)
-
     const dayMapping = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    const transformedData = dataChart.sessions.map((session) => ({
+      ...session,
+      day: dayMapping[session.day - 1]
+    }));
+  
+    console.log(transformedData)
  
 
   return (
@@ -14,7 +18,7 @@ const AverageChart = ({ dataChart }) => {
       <AreaChart
           width={250}
           height={300}
-          data={dataChart.sessions}
+          data={transformedData}
           title="Durée moyenne des sessions"
           margin={{
             top: 10,
@@ -26,7 +30,10 @@ const AverageChart = ({ dataChart }) => {
           <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
           <XAxis 
                 dataKey="day" 
-                tickFormatter={(tick) => dayMapping[tick - 1]}
+                tickFormatter={transformedData}
+                tick={{ fill: 'white' }}
+                axisLine={false}
+                tickLine={false}
             />
           <Tooltip />
           <Area type="monotone" dataKey="sessionLength" stroke="#ffffff" fill="transparent" />
