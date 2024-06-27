@@ -11,6 +11,7 @@ import CheeseburgerIcon from "../../assets/img/cheeseburger.svg";
 import StatChart from "../Chart/StatChart.tsx";
 import AverageChart from "../Chart/AverageChart.tsx";
 import TodayScore from "../Chart/TodayScore.tsx";
+import { mockUserActivity, mockUserAverageSession, mockUserMainData, mockUserPerformance } from "../../services/user_mock.service.ts";
 
 
 interface UserActivityProps {}
@@ -18,21 +19,12 @@ interface UserActivityProps {}
 const UserActivity: React.FC<UserActivityProps> = () => {
   const { id } = useParams();
 
-  const user = data.USER_MAIN_DATA.find(
-    (user) => user.id === parseInt(id ?? "")
-  );
-  const activity = data.USER_ACTIVITY.find(
-    (user) => user.userId === parseInt(id ?? "")
-  );
-  const mainData = data.USER_MAIN_DATA.find(
-    (user) => user.id === parseInt(id ?? "")
-  );
-  const performance = data.USER_PERFORMANCE.find(
-    (user) => user.userId === parseInt(id ?? "")
-  );
-  const average = data.USER_AVERAGE_SESSIONS.find(
-    (user) => user.userId === parseInt(id ?? "")
-  );
+  const isMock = true
+
+  const user = isMock ? mockUserMainData(id) : '';
+  const activity = isMock ? mockUserActivity(id) : '';
+  const performance = isMock ? mockUserPerformance(id) : '';
+  const average = isMock ? mockUserAverageSession(id) : '';
   const userName = user ? user.userInfos.firstName : "Utilisateur non trouvé";
   const newData = activity?.sessions.map((session) => {
       return {
@@ -57,7 +49,7 @@ const UserActivity: React.FC<UserActivityProps> = () => {
           <Chart dataChart={newData} />
         </div>
         <div className="flex">
-          <div className="w-1/3 h-32">
+          <div className="w-1/3 h-[300px]">
             <AverageChart dataChart={average} lang="fr" />
           </div>
           <div className="w-1/3 h-32">
@@ -71,28 +63,28 @@ const UserActivity: React.FC<UserActivityProps> = () => {
       <div className="w-1/4 flex flex-col gap-32 h-full">
         
         <Category 
-            category={mainData?.keyData.calorieCount} 
+            category={user?.keyData.calorieCount} 
             icon={EnergyIcon} 
             label="Calories" 
             unit="kCal" 
             color="#FBEAEA"
           />
         <Category 
-            category={mainData?.keyData.carbohydrateCount} 
+            category={user?.keyData.carbohydrateCount} 
             icon={ChickenIcon} 
             label="Glucides" 
             unit="g" 
             color="#4AB8FF1A"
           />
         <Category 
-            category={mainData?.keyData.lipidCount} 
+            category={user?.keyData.lipidCount} 
             icon={AppleIcon} 
             label="Lipides" 
             unit="g" 
             color="#FAF6E5"
           />
         <Category 
-            category={mainData?.keyData.proteinCount} 
+            category={user?.keyData.proteinCount} 
             icon={CheeseburgerIcon} 
             label="Protéines" 
             unit="g" 

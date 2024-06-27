@@ -3,9 +3,8 @@ import { PieChart, Pie, Cell, Text } from 'recharts';
 import './index.css';
 
 const TodayScore = ({ dataChart }) => {
-    console.log(dataChart);
 
-    const COLORS = ['#FF0000', '#FFFFFF'];
+    const COLORS = ['#FF0000', '#d7d7d7'];
 
     const data = [
         { name: 'Achieved', value: dataChart },
@@ -26,6 +25,7 @@ const TodayScore = ({ dataChart }) => {
                 paddingAngle={5}
                 dataKey="value"
                 labelLine={false}
+                cornerRadius={10}
                 label={({ cx, cy }) => (
                     <>
                         <Text
