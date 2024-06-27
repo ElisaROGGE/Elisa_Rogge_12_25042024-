@@ -10,6 +10,7 @@ import AppleIcon from "../../assets/img/apple.svg";
 import CheeseburgerIcon from "../../assets/img/cheeseburger.svg";
 import StatChart from "../Chart/StatChart.tsx";
 import AverageChart from "../Chart/AverageChart.tsx";
+import TodayScore from "../Chart/TodayScore.tsx";
 
 
 interface UserActivityProps {}
@@ -61,6 +62,9 @@ const UserActivity: React.FC<UserActivityProps> = () => {
           </div>
           <div className="w-1/3 h-32">
             <StatChart dataChart={performance} lang="fr" />
+          </div>
+          <div className="w-1/3 h-32">
+            <TodayScore dataChart={user?.todayScore} lang="fr" />
           </div>
         </div>
       </div>
