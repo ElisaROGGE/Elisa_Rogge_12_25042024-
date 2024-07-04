@@ -34,10 +34,10 @@ const UserActivity: React.FC<UserActivityProps> = () => {
         const performance = isMock ? mockUserPerformance(id) : await getUserPerformance(id);
         const session = isMock ? mockUserAverageSession(id) : await getUserSession(id);
 
-        setUserData(user.data);
-        setUserActivity(activity.data);
-        setUserPerformance(performance.data);
-        setUserSession(session.data);
+        setUserData(isMock ? user : user.data);
+        setUserActivity(isMock ? activity : activity.data);
+        setUserPerformance(isMock ? performance : performance.data);
+        setUserSession(isMock ? session : session.data);
       } catch (error) {
         setError(error);
       } finally {
@@ -83,13 +83,13 @@ const UserActivity: React.FC<UserActivityProps> = () => {
           </div>
           <div className="flex">
             <div className="w-1/3 h-[300px]">
-              <AverageChart dataChart={userSession} lang="fr" />
+              <AverageChart dataChart={userSession}/>
             </div>
             <div className="w-1/3 h-32">
-              <StatChart dataChart={userPerformance} lang="fr" />
+              <StatChart dataChart={userPerformance} />
             </div>
             <div className="w-1/3 h-32">
-              <TodayScore dataChart={userData?.score} lang="fr" />
+              <TodayScore dataChart={userData?.score} />
             </div>
           </div>
         </div>

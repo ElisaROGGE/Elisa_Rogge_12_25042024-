@@ -14,23 +14,19 @@ const AverageChart = ({ dataChart }) => {
       ...session,
       day: dayMapping[session.day - 1]
     }));
-    transformedData.push(transformedData[transformedData.length -1])
-    transformedData.unshift(transformedData[0])
     
     const CustomCursor = (props) => {
-      const { points, width, height, dataIndex } = props;
+      const { points, width } = props;
       const { x, y } = points[0];
-      if (dataIndex !== transformedData.length - 1) {
-        return null;
-      }
+      console.log(props);
       return (
         <Rectangle
-          fill="#E60000"
-          stroke="#E60000"
+          fill="#E30000"
+          stroke="red"
           x={x}
           y={y}
-          width={width}
-          height={height}
+          width={250}
+          height={350}
         />
       );
     };
@@ -45,18 +41,16 @@ const AverageChart = ({ dataChart }) => {
       }
       return null;
     };
-  
- 
 
-  return (
-    <div style={{ backgroundColor: "#FF0000", width: '90%', height: '100%', borderWidth: 2, borderRadius: 8 }}>
-      <p className="text-white opacity-70 text-center pt-5">Durée moyenne des sessions</p>
-      <AreaChart
+    return (
+      <div style={{ backgroundColor: "#FF0000", width: '90%', height: '100%', borderWidth: 2, borderRadius: 8 }}>
+        <p className="text-white opacity-70 text-center pt-5">Durée moyenne des sessions</p>
+        <AreaChart
           width={350}
           height={250}
           data={transformedData}
           title="Durée moyenne des sessions"
-          className="average"
+          className="average z-10"
           margin={{
             top: 10,
             right: 20,
@@ -64,19 +58,18 @@ const AverageChart = ({ dataChart }) => {
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} />
           <XAxis 
-                dataKey="day" 
-                tickFormatter={transformedData}
-                tick={{ fill: 'white' }}
-                axisLine={false}
-                tickLine={false}
-            />
+            dataKey="day" 
+            tick={{ fill: 'white' }}
+            axisLine={false}
+            tickLine={false}
+          />
           <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
           <Area type="monotone" dataKey="sessionLength" stroke="#ffffff" fill="transparent" />
         </AreaChart>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default AverageChart;

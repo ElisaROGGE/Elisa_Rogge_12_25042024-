@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import UserActivity from './components/UserActivity'
+import Home from './components/Home';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="app-container">
         <Sidebar />
         <Routes>
+          <Route path='/' Component={Home} />
           <Route path="/user/:id" Component={UserActivity} />
         </Routes>
       </div>
