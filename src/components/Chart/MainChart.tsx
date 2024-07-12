@@ -36,7 +36,7 @@ const Chart: React.FC<ChartProps> = ({ dataChart }) => {
   };
 
   return (
-    <div>
+    <div className="main-chart">
         <BarChart
             width={800}
             height={300}

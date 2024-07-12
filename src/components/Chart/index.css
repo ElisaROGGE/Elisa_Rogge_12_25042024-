@@ -1,6 +1,9 @@
 .stat .recharts-wrapper{
     width: 100% !important;
 }
+.main-chart .recharts-wrapper{
+    width: 100% !important;
+}
 .slate{
     background-color: #FBFBFB;
 }

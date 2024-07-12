@@ -7,7 +7,6 @@ interface SidebarIconsProps {
 }
 
 const SidebarIcons: React.FC<SidebarIconsProps> = ({icon}) => {
-    console.log(icon)
     
     return (
         <div className='icon-list'>

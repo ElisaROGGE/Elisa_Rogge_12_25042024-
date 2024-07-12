@@ -1,7 +1,11 @@
 import { PieChart, Pie, Cell, Text } from 'recharts';
 import './index.css';
 
-const TodayScore = ({ dataChart }) => {
+interface ScoreChartProps {
+    dataChart: number
+  }
+
+const TodayScore : React.FC<ScoreChartProps> = ({ dataChart }) => {
 
     const COLORS = ['#FF0000', '#FBFBFB'];
 

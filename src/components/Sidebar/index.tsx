@@ -28,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
 ];
     return (
         <div className='sidebar'>
-            <div className='icons'>
+            <div className='icons flex flex-col items-center'>
                 {icons.map((icon, index) => (
                     <div key={index}>
                         <SidebarIcons icon={icon} />

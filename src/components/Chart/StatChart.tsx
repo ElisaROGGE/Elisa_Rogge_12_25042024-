@@ -1,7 +1,12 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import './index.css'
+import { IUserPerformance } from '../../services/user.service';
 
-const StatChart = ({ dataChart }) => {
+interface StatChartProps {
+  dataChart: IUserPerformance
+}
+
+const StatChart : React.FC<StatChartProps> = ({ dataChart }) => {
   const translations = {
     cardio: "Cardio",
     energy: "Énergie",

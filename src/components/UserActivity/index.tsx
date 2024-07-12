@@ -11,28 +11,29 @@ import StatChart from "../Chart/StatChart.tsx";
 import AverageChart from "../Chart/AverageChart.tsx";
 import TodayScore from "../Chart/TodayScore.tsx";
 import { mockUserActivity, mockUserAverageSession, mockUserMainData, mockUserPerformance } from "../../services/user_mock.service.ts";
-import { getUser, getUserActivities, getUserPerformance, getUserSession } from "../../services/user.service.ts";
+import { getUser, getUserActivities, getUserPerformance, getUserSession, IUser, IUserActivity, IUserPerformance, IUserSessions } from "../../services/user.service.ts";
 
 interface UserActivityProps {}
 
 const UserActivity: React.FC<UserActivityProps> = () => {
   const { id } = useParams();
-  const [userData, setUserData] = useState(null);
-  const [userActivity, setUserActivity] = useState(null);
-  const [userPerformance, setUserPerformance] = useState(null);
-  const [userSession, setUserSession] = useState(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
+  const [userActivity, setUserActivity] = useState<IUserActivity | null>(null);
+  const [userPerformance, setUserPerformance] = useState<IUserPerformance | null>(null);
+  const [userSession, setUserSession] = useState<IUserSessions | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
 
   const isMock = false;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const user = isMock ? mockUserMainData(id) : await getUser(id);
-        const activity = isMock ? mockUserActivity(id) : await getUserActivities(id);
-        const performance = isMock ? mockUserPerformance(id) : await getUserPerformance(id);
-        const session = isMock ? mockUserAverageSession(id) : await getUserSession(id);
+        const user = isMock ? mockUserMainData(id as string) : await getUser(id as unknown as number);
+        const activity = isMock ? mockUserActivity(id as string) : await getUserActivities(id as unknown as number);
+        const performance = isMock ? mockUserPerformance(id as string) : await getUserPerformance(id as unknown as number);
+        const session = isMock ? mockUserAverageSession(id as string) : await getUserSession(id as unknown as number);
 
         setUserData(isMock ? user : user.data);
         setUserActivity(isMock ? activity : activity.data);
@@ -81,7 +82,7 @@ const UserActivity: React.FC<UserActivityProps> = () => {
             <span className="font-bold absolute">Activité quotidienne</span>
             <Chart dataChart={newData} />
           </div>
-          <div className="flex">
+          <div className="flex mt-5">
             <div className="w-1/3 h-[300px]">
               <AverageChart dataChart={userSession}/>
             </div>
@@ -89,7 +90,7 @@ const UserActivity: React.FC<UserActivityProps> = () => {
               <StatChart dataChart={userPerformance} />
             </div>
             <div className="w-1/3 h-32">
-              <TodayScore dataChart={userData?.score} />
+              <TodayScore dataChart={userData?.score ? userData.score: userData?.todayScore} />
             </div>
           </div>
         </div>
