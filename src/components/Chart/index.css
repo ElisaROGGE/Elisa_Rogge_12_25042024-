@@ -4,6 +4,9 @@
 .main-chart .recharts-wrapper{
     width: 100% !important;
 }
+.main-chart .recharts-legend-wrapper{
+    top: 0;
+}
 .slate{
     background-color: #FBFBFB;
 }

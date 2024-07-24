@@ -59,7 +59,7 @@ const TodayScore : React.FC<ScoreChartProps> = ({ dataChart }) => {
                         </>
                     )}
                 >
-                    {data.map((entry, index) => (
+                    {data.map((_entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke='none' />
                     ))}
                 </Pie>

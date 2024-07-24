@@ -25,7 +25,7 @@ const UserActivity: React.FC<UserActivityProps> = () => {
   const [error, setError] = useState<string | null>(null);
 
 
-  const isMock = false;
+  const isMock = true;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,8 +65,6 @@ const UserActivity: React.FC<UserActivityProps> = () => {
       kilogram: session.kilogram
     };
   });
-
-  console.log(userData)
 
   return (
     <div className="user p-5 w-full">
