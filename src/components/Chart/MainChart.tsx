@@ -26,8 +26,8 @@ const Chart: React.FC<ChartProps> = ({ dataChart }) => {
     if (active && payload && payload.length) {
       return (
         <div style={{ backgroundColor: 'red', padding: '20px', color: 'white' }}>
-          <p>{`${payload[1].value}kg`}</p>
-          <p>{`${payload[0].value}Kcal`}</p>
+          <p>{`${payload[0].value}kg`}</p>
+          <p>{`${payload[1].value}Kcal`}</p>
         </div>
       );
     }

@@ -20,8 +20,10 @@ const AverageChart: React.FC<AverageChartProps> = ({ dataChart }) => {
     day: dayMapping[session.day - 1],
     isLast: index === dataChart.sessions.length - 1
   }));
-  transformedData.push({ ...transformedData[transformedData.length - 1] });
-  transformedData.unshift({ ...transformedData[0] });
+  if (transformedData.length > 0) {
+    transformedData.push(transformedData[transformedData.length - 1]);
+    transformedData.unshift(transformedData[0]);
+  }
 
   const CustomCursor = (props) => {
     const { points, width, height } = props;
